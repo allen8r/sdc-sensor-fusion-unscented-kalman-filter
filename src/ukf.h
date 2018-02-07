@@ -104,7 +104,16 @@ public:
   void UpdateRadar(MeasurementPackage meas_package);
 
   void GenerateAugmentedSigmaPoints(MatrixXd* Xsig_out);
-  void SigmaPointPrediction(MatrixXd* Xsig_out, MatrixXd* Xsig_aug, double delta_t);
+  void SigmaPointPrediction(MatrixXd* Xsig_aug, double delta_t);
+  void PredictMeanAndCovariance();
+  void PredictRadarMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd* z_sig);
+  void UpdateState(MatrixXd* Zsig, VectorXd* z, VectorXd* z_pred, MatrixXd* S);
+
+  /**
+   * Convenience method to normalize an angle to within the range of (-M_PI, M_PI)
+   * 
+   */
+  double NormalizeAngle(double a);
 };
 
 #endif /* UKF_H */
