@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include "tools.h"
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -67,6 +68,18 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
+  ///* Tool object
+  Tools tools;
+
+  ///* Matrices for laser update calculations
+  Eigen::MatrixXd H_laser_;
+  Eigen::MatrixXd R_laser_;
+  Eigen::MatrixXd F_;
+  Eigen::MatrixXd Q_;
+  
+  // acceleration noise components
+  float noise_ax;
+  float noise_ay;
 
   /**
    * Constructor
@@ -89,7 +102,9 @@ public:
    * matrix
    * @param delta_t Time between k and k+1 in s
    */
-  void Prediction(double delta_t);
+  void PredictionRadar(double delta_t);
+
+  void PredictionLidar(double delta_t);
 
   /**
    * Updates the state and the state covariance matrix using a laser measurement
@@ -107,7 +122,8 @@ public:
   void SigmaPointPrediction(MatrixXd* Xsig_aug, double delta_t);
   void PredictMeanAndCovariance();
   void PredictRadarMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd* z_sig);
-  void UpdateState(MatrixXd* Zsig, VectorXd* z, VectorXd* z_pred, MatrixXd* S);
+  void UpdateRadarState(MatrixXd* Zsig, VectorXd* z, VectorXd* z_pred, MatrixXd* S);
+  void UpdateLidarState(VectorXd z);
 
   /**
    * Convenience method to normalize an angle to within the range of (-M_PI, M_PI)
