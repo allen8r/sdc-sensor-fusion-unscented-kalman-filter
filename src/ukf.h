@@ -71,7 +71,9 @@ public:
   ///* Tool object
   Tools tools;
 
-  ///* Matrices for laser update calculations
+  ///* For Lidar update calculations
+  Eigen::VectorXd x_laser_;
+  Eigen::MatrixXd P_laser_;
   Eigen::MatrixXd H_laser_;
   Eigen::MatrixXd R_laser_;
   Eigen::MatrixXd F_;
@@ -102,9 +104,12 @@ public:
    * matrix
    * @param delta_t Time between k and k+1 in s
    */
-  void PredictionRadar(double delta_t);
+  void Prediction(double delta_t);
+  
+  /*void PredictionRadar(double delta_t);
 
   void PredictionLidar(double delta_t);
+*/
 
   /**
    * Updates the state and the state covariance matrix using a laser measurement

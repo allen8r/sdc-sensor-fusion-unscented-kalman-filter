@@ -24,6 +24,10 @@ public:
   */
   VectorXd CalculateRMSE(const vector<VectorXd> &estimations, const vector<VectorXd> &ground_truth);
 
+  /**
+   * Covenience method to write message to standard output.
+   */
+  void Msg(const string s);
 };
 
 #endif /* TOOLS_H_ */
