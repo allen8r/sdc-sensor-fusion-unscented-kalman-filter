@@ -44,3 +44,11 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 void Tools::Msg(const string s) {
   cout << s << endl;
 }
+
+void Tools::Msg(const double val) {
+  cout << val << endl;
+}
+
+void Tools::Msg(const Eigen::MatrixXd mat) {
+  cout << mat << endl;
+}

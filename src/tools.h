@@ -28,6 +28,10 @@ public:
    * Covenience method to write message to standard output.
    */
   void Msg(const string s);
+
+  void Msg(const double val);
+
+  void Msg(const Eigen::MatrixXd mat);
 };
 
 #endif /* TOOLS_H_ */

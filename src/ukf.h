@@ -72,16 +72,12 @@ public:
   Tools tools;
 
   ///* For Lidar update calculations
-  Eigen::VectorXd x_laser_;
-  Eigen::MatrixXd P_laser_;
   Eigen::MatrixXd H_laser_;
   Eigen::MatrixXd R_laser_;
-  Eigen::MatrixXd F_;
-  Eigen::MatrixXd Q_;
-  
-  // acceleration noise components
-  float noise_ax;
-  float noise_ay;
+
+  // normalized innovation squared (NIS)
+  double nis_radar_;
+  double nis_laser_;
 
   /**
    * Constructor
